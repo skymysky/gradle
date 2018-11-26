@@ -419,19 +419,4 @@ public class NativeBasePlugin implements Plugin<ProjectInternal> {
             }
         }
     }
-
-    /**
-     * Used by all native plugins to work around the missing default feature on Property
-     *
-     * See https://github.com/gradle/gradle-native/issues/918
-     *
-     * @since 5.1
-     */
-    public static Set<TargetMachine> setDefaultAndGetTargetMachineValues(SetProperty<TargetMachine> targetMachines, TargetMachineFactory targetMachineFactory) {
-        if (!targetMachines.isPresent()) {
-            targetMachines.set(ImmutableSet.of(((DefaultTargetMachineFactory)targetMachineFactory).host()));
-        }
-        targetMachines.finalizeValue();
-        return targetMachines.get();
-    }
 }
