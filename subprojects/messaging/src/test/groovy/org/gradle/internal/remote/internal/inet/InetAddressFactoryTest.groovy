@@ -109,6 +109,11 @@ class InetAddressFactoryTest extends Specification {
         !new InetAddressFactory().communicationAddresses.empty
     }
 
+    def "local binding address is loopback on our ci always"() {
+        expect:
+        new InetAddressFactory().localBindingAddress.isLoopbackAddress()
+    }
+
     private defaultAddresses() {
         loopbackAddresses([ip(127, 0, 0, 1)])
     }
